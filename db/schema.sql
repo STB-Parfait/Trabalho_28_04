@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS agenda_db;
+
+USE agenda_db;
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(160) NOT NULL UNIQUE,
+    phone VARCHAR(40) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS appointments (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    contact_id BIGINT NOT NULL,
+    title VARCHAR(140) NOT NULL,
+    description TEXT,
+    starts_at DATETIME NOT NULL,
+    ends_at DATETIME NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'SCHEDULED',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_appointments_contact
+        FOREIGN KEY (contact_id) REFERENCES contacts(id)
+        ON DELETE CASCADE
+);
