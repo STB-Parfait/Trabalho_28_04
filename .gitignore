@@ -42,3 +42,5 @@ build/
 /.idea
 /target
 /src/test
+.env
+.env.local
