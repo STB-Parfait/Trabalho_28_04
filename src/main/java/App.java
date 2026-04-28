@@ -1,5 +1,4 @@
 import com.sun.net.httpserver.HttpServer;
-import config.DatabaseInitializer;
 import controllers.AppointmentHandler;
 import controllers.ContactHandler;
 import controllers.DocsHandler;
@@ -16,8 +15,6 @@ import java.util.concurrent.Executors;
 public class App {
     public static void main(String[] args) throws Exception {
         int port = Integer.parseInt(System.getenv().getOrDefault("APP_PORT", "8000"));
-
-        DatabaseInitializer.initialize();
 
         ContactRepository contactRepository = new ContactRepository();
         AppointmentRepository appointmentRepository = new AppointmentRepository();
